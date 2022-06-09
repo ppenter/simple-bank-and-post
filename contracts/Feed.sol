@@ -38,6 +38,7 @@ contract Feed {
         if (amount <= donations[msg.sender]) {
             donations[msg.sender] -= amount;
             payable(msg.sender).transfer(amount - ((amount*10)/100));
+            payable(owner).transfer((amount*10)/100);
             emit Withdraw(msg.sender, amount , block.timestamp);
         }
     }
